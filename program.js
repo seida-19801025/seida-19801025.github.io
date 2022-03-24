@@ -1,10 +1,9 @@
-const seCorrect = new Audio('mp3/correct.mp3');
+const seCorrect = new Audio("mp3/correct.mp3");
 seCorrect.play();
 
 /**
  * キーが押されたときのイベント
  * @param {*} e 
- * @returns 
  */
 function eventKeyPress(e) {
   document.getElementById("targetFont").innerHTML = e.key;
@@ -24,7 +23,5 @@ function seOff() {
 	seCorrect.currentTime = 0;
 	return false;
 }
-
-
 
 document.addEventListener("keypress", eventKeyPress);
