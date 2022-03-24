@@ -1,4 +1,4 @@
-const seCorrect = new Audio("./mp3/correct.mp3");
+const seCorrect = new Audio("https://seida-19801025.github.io/mp3/correct.mp3");
 seCorrect.play();
 
 /**
