@@ -1,5 +1,5 @@
 const seCorrect = new Audio('mp3/correct.mp3');
-
+seCorrect.play();
 
 /**
  * キーが押されたときのイベント
