@@ -8,7 +8,10 @@ seCorrect.play();
 function eventKeyPress(e) {
   document.getElementById("targetFont").innerHTML = e.key;
 	
-  se_off();
+  //se_off();
+	
+  seCorrect.pause();
+  seCorrect.currentTime = 0;
   seCorrect.play();
 }
 
