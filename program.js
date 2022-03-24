@@ -7,6 +7,7 @@ seCorrect.play();
  * @returns 
  */
 function eventKeyPress(e) {
+  document.getElementById('targetFont').innerHTML = e.key;
   se_off();
   seCorrect.play();
 }
