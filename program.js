@@ -8,18 +8,11 @@ const seFinish = new Audio('https://seida-19801025.github.io/mp3/finish.mp3');
  */
 function eventKeyPress(e) {
   document.getElementById("targetFont").innerHTML = e.key;
-	
-  //se_off();
-	
-  //seCorrect.pause();
-  //seCorrect.currentTime = 0;
-
-  //seCorrect.play();
   se(seFinish);
 }
 
 /**
- * 音を止める
+ * 効果音を鳴らす
  * @returns 
  */
 function se(audio) {
