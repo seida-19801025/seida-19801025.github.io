@@ -8,7 +8,7 @@ const seFinish = new Audio('https://seida-19801025.github.io/mp3/finish.mp3');
  */
 function eventKeyPress(e) {
   document.getElementById("targetFont").innerHTML = e.key;
-  if (k.key === "a"){
+  if (e.key === "a"){
 	se(seFinish);
   }else if (e.key === "s"){
 	se(seWrong);
