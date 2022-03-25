@@ -1,5 +1,6 @@
 const seCorrect = new Audio("https://seida-19801025.github.io/mp3/correct.mp3");
-//seCorrect.play();
+const seWrong = new Audio('https://seida-19801025.github.io/mp3/wrong.mp3');
+const seFinish = new Audio('https://seida-19801025.github.io/mp3/finish.mp3');
 
 /**
  * キーが押されたときのイベント
@@ -10,21 +11,24 @@ function eventKeyPress(e) {
 	
   //se_off();
 	
-  seCorrect.pause();
-  seCorrect.currentTime = 0;
+  //seCorrect.pause();
+  //seCorrect.currentTime = 0;
   seCorrect.play();
+  audio.play(seFinish);
 }
 
 /**
- * 正解音を止める
+ * 音を止める
  * @returns 
  */
-function seOff() {
-	// seCorrect.pause();
-	// seCorrect.currentTime = 0;
+function se(audio) {
 	seCorrect.pause();
+	seWrong.pause();
+	seFinish.pause();
 	seCorrect.currentTime = 0;
-	return false;
+	seWrong.currentTime = 0;
+	seFinish.currentTime = 0;
+	audio.play();
 }
 
 document.addEventListener("keypress", eventKeyPress);
