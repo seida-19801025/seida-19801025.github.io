@@ -19,7 +19,7 @@ function eventKeyPress(e) {
 
 /**
  * 効果音を鳴らす
- * 
+ * ex) se(seCorrect);
  */
 function se(audio) {
 	audio.pause();
