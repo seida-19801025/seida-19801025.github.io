@@ -52,12 +52,23 @@ function getTxt(txtFile) {
 }
 
 /**
- * TextString to Array
+ * 文字列を改行で区切って配列化
  * @param {string} str -CRLFを含んだ文字列 
  * @returns 
  */
 function convertTXTtoArray(str) { // 読み込んだTXTデータが文字列として渡される
 	let result = str.split("\r\n"); // CRLFを区切り文字として行を要素とした配列を生成
+	return result;
+}
+
+
+/**
+ * 乱数(0-num)
+ * @param {number} num -乱数の上限値
+ * @returns {number} - 0～numの乱数
+ */
+function rand(num) {
+	result = Math.floor(Math.random() * (num - 1));
 	return result;
 }
 
