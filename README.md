@@ -1,11 +1,12 @@
 # seida-19801025.github.io
 タイピング練習アプリ
-# 素材
+## 素材
 
 <https://www.irasutoya.com/>
-##画像
+### 画像
 [かわいいフリー素材集 いらすとや](https://www.irasutoya.com/)
-##音声
+---
+### 音声
 [効果音ラボ](https://soundeffect-lab.info/)
 
 [魔王魂](https://maou.audio/category/se/se-inst/)
