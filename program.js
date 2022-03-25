@@ -19,16 +19,9 @@ function eventKeyPress(e) {
 
 /**
  * 効果音を鳴らす
- * @returns 
+ * 
  */
 function se(audio) {
-//	seCorrect.pause();
-//	seWrong.pause();
-//	seFinish.pause();
-//	seCorrect.currentTime = 0;
-//	seWrong.currentTime = 0;
-//	seFinish.currentTime = 0;
-
 	audio.pause();
 	audio.currentTime = 0;
 	audio.play();
