@@ -12,7 +12,7 @@ let arrayTestWord = getTxt(txtFile);
  */
 function eventKeyPress(e) {
 //  document.getElementById("targetFont").innerHTML = e.key;
-  document.getElementById("targetFont").innerHTML = arrayTextWord[1];
+  document.getElementById("targetFont").innerHTML = arrayTestWord[1];
 
   if (e.key === "a"){
 	se(seFinish);
