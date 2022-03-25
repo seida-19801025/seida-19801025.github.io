@@ -13,8 +13,9 @@ function eventKeyPress(e) {
 	
   //seCorrect.pause();
   //seCorrect.currentTime = 0;
-  seCorrect.play();
-  audio.play(seFinish);
+
+  //seCorrect.play();
+  se(seFinish);
 }
 
 /**
