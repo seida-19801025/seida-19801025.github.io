@@ -1,8 +1,6 @@
 # seida-19801025.github.io
 タイピング練習アプリ
 ## 素材
-
-<https://www.irasutoya.com/>
 ### 画像
 [かわいいフリー素材集 いらすとや](https://www.irasutoya.com/)
 ---
