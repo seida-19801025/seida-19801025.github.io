@@ -1,10 +1,11 @@
 const seCorrect = new Audio("https://seida-19801025.github.io/mp3/correct.mp3");
 const seWrong = new Audio("https://seida-19801025.github.io/mp3/wrong.mp3");
 const seFinish = new Audio("https://seida-19801025.github.io/mp3/finish.mp3");
+const level = 10;
 const txtFile = "https://seida-19801025.github.io/txt/" + "LV" + "10" + ".txt"
 
 //levelに対応したテキストファイルを配列で取得
-let arrayTestWord = getTxt(txtFile);
+const arrayTestWord = getTxt(txtFile);
 
 /**
  * キーが押されたときのイベント
