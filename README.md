@@ -1,2 +1,6 @@
 # seida-19801025.github.io
-## Readmefile-説明(必要があれば記述する発表資料として使うか？？)
+タイピング練習アプリ
+# 素材
+[かわいいフリー素材集 いらすとや](https://www.irasutoya.com/)
+[効果音ラボ](https://soundeffect-lab.info/)
+[魔王魂](https://maou.audio/category/se/se-inst/)
