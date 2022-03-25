@@ -13,7 +13,7 @@ function eventKeyPress(e) {
   }else if (e.key === "s"){
 	se(seWrong);
   }else{
-  	se(seFinish);
+  	se(seCorrect);
   }
 }
 
