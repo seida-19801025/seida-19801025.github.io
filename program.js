@@ -8,7 +8,13 @@ const seFinish = new Audio('https://seida-19801025.github.io/mp3/finish.mp3');
  */
 function eventKeyPress(e) {
   document.getElementById("targetFont").innerHTML = e.key;
-  se(seFinish);
+  if (k.key === "a"){
+	se(seFinish);
+  }else if (e.key === "s"){
+	se(seWrong);
+  }else{
+  	se(seFinish);
+  }
 }
 
 /**
@@ -16,12 +22,15 @@ function eventKeyPress(e) {
  * @returns 
  */
 function se(audio) {
-	seCorrect.pause();
-	seWrong.pause();
-	seFinish.pause();
-	seCorrect.currentTime = 0;
-	seWrong.currentTime = 0;
-	seFinish.currentTime = 0;
+//	seCorrect.pause();
+//	seWrong.pause();
+//	seFinish.pause();
+//	seCorrect.currentTime = 0;
+//	seWrong.currentTime = 0;
+//	seFinish.currentTime = 0;
+
+	audio.pause();
+	audio.currentTime = 0;
 	audio.play();
 }
 
