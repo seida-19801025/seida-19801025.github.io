@@ -4,8 +4,15 @@ const seFinish = new Audio("https://seida-19801025.github.io/mp3/finish.mp3");
 const level = 10;
 const txtFile = "https://seida-19801025.github.io/txt/" + "LV" + level + ".txt"
 
-//levelに対応したテキストファイルを配列で取得
-const arrayTestWord = getTxt(txtFile);
+
+const arrayTestWord = getTxt(txtFile); //levelに対応したテキストファイルを配列で取得
+
+let testWord = ""; //arrayTestWordから1つのデータを受け取り出題する
+let testWordCount = 0;
+
+let testChar = ""; //次に入力する文字
+let testCharCount = 0;
+
 
 /**
  * キーが押されたときのイベント
@@ -13,15 +20,11 @@ const arrayTestWord = getTxt(txtFile);
  */
 function eventKeyPress(e) {
 //  document.getElementById("targetFont").innerHTML = e.key;
-  document.getElementById("targetFont").innerHTML = arrayTestWord[1];
-
-  if (e.key === "a"){
-	se(seFinish);
-  }else if (e.key === "s"){
-	se(seWrong);
-  }else{
-  	se(seCorrect);
+//  document.getElementById("targetFont").innerHTML = arrayTestWord[1];
+  if(e.key === testChar){
+    correctCharType();
   }
+
 }
 
 /**
@@ -70,6 +73,27 @@ function convertTXTtoArray(str) { // 読み込んだTXTデータが文字列と�
 function rand(num) {
 	result = Math.floor(Math.random() * (num - 1));
 	return result;
+}
+
+function nextWord(){
+	testWordCount++;
+	testCharCount = 0;
+	
+	testWord = arrayTestWord[rand(arrayTestWord.length-1)];
+	document.getElementById('targetFont').innerHTML = testWord;
+	testChar = testWord.slice(testCharCount, testCharCount + 1);
+}
+
+function correctCharType(){
+	testCharCount++;
+
+	//単語完了時
+	if (testWord.length <= testCharCount) {
+		nextWord();
+	}else{ //未完なら
+		document.getElementById('targetFont').innerHTML = testWord.slice(0, testCharCount).fontcolor("blue") + testWord.slice(testCharCount);
+		testChar = testWord.slice(testCharCount, testCharCount + 1);
+	}	
 }
 
 
