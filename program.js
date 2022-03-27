@@ -105,6 +105,9 @@ function correctType(){
 
 function wrongType(){
 	se(seWrong);
+	document.getElementById('targetFont').innerHTML = testWord.slice(0, testCharCount).fontcolor("blue")
+		+ testWord.slice(testCharCount,testCharCount + 1).fontcolor("red")
+		+ testWord.slice(testCharCount + 1);
 }
 
 
