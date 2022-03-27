@@ -28,6 +28,8 @@ function eventKeyPress(e) {
 	
   if(e.key === testChar){
     correctType();
+  } else {
+    wrongType();
   }
 
 }
