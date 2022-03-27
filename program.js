@@ -27,7 +27,7 @@ function eventKeyPress(e) {
   }
 	
   if(e.key === testChar){
-    correctCharType();
+    correctType();
   }
 
 }
@@ -89,16 +89,22 @@ function nextWord(){
 	testChar = testWord.slice(testCharCount, testCharCount + 1);
 }
 
-function correctCharType(){
+function correctType(){
+	se(seCorrect);
 	testCharCount++;
 
 	//単語完了時
 	if (testWord.length <= testCharCount) {
+		se(seFinish);
 		nextWord();
 	}else{ //未完なら
 		document.getElementById('targetFont').innerHTML = testWord.slice(0, testCharCount).fontcolor("blue") + testWord.slice(testCharCount);
 		testChar = testWord.slice(testCharCount, testCharCount + 1);
 	}	
+}
+
+function wrongType(){
+	se(seWrong);
 }
 
 
