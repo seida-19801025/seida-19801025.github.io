@@ -1,6 +1,9 @@
-const seCorrect = new Audio("https://seida-19801025.github.io/mp3/correct.mp3");
-const seWrong = new Audio("https://seida-19801025.github.io/mp3/wrong.mp3");
-const seFinish = new Audio("https://seida-19801025.github.io/mp3/finish.mp3");
+// const seCorrect = new Audio("https://seida-19801025.github.io/mp3/correct.mp3");
+// const seWrong = new Audio("https://seida-19801025.github.io/mp3/wrong.mp3");
+// const seFinish = new Audio("https://seida-19801025.github.io/mp3/finish.mp3");
+const seCorrect = new Audio("./mp3/correct.mp3");
+const seWrong = new Audio("./mp3/wrong.mp3");
+const seFinish = new Audio("./mp3/finish.mp3");
 const level = 10;
 const txtFile = "https://seida-19801025.github.io/txt/" + "LV" + level + ".txt"
 
@@ -23,7 +26,7 @@ function eventKeyPress(e) {
 //  document.getElementById("targetFont").innerHTML = arrayTestWord[1];
 if (beforeStart === true){ 
   	if(e.key === " "){//スペースでスタート
-	  	console.log("Start!");
+	  	console.log("Start!!");
 	  	nextWord();
 		beforeStart = false;
   	}
@@ -82,6 +85,7 @@ function convertTXTtoArray(str) { // 読み込んだTXTデータが文字列と�
  * @returns {number} - 0～numの乱数
  */
 function rand(num) {
+	console.log(`randmax = ${num}`);
 	result = Math.floor(Math.random() * (num - 1));
 	return result;
 }
