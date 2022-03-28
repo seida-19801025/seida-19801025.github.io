@@ -1,20 +1,6 @@
-YOU
-ME
-GET
-BY
-VAL
-INT
-DEL
-FLOAT
-LONG
-DOUBLE
-CHAR
-THIS
-THAT
-FOR
-WHILE
-IF
-ELSE
-LOOP
-SWITCH
-CASE
+You are fire.
+Make me happy.
+Get wild
+Stand by me.
+for(let i=1;i<10;i++)
+{}
