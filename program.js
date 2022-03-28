@@ -89,7 +89,7 @@ function rand(num) {
 function nextWord(){
 	testWordCount++;
 	testCharCount = 0;
-	
+	console.log(`arrayTestWord.length : ${arrayTestWord.length}`);
 	testWord = arrayTestWord[rand(arrayTestWord.length - 1)];
 	document.getElementById('targetFont').innerHTML = testWord;
 	testChar = testWord.slice(testCharCount, testCharCount + 1);
