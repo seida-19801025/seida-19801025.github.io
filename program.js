@@ -77,7 +77,8 @@ function convertTXTtoArray(str) { // 読み込んだTXTデータが文字列と�
 	console.log(`str : ${str}`)
 	let result = str.split("\r\n"); // CRLFを区切り文字として行を要素とした配列を生成
 	console.log(`result : ${result}`);
-	
+	// ■■■■■■■■■■■■■■■■■■■■　暫定対応（１つ多く要素ができる）■■■■■■■■■■■■■■■■■■■■
+	result.pop();
 	return result;
 }
 
@@ -89,7 +90,7 @@ function convertTXTtoArray(str) { // 読み込んだTXTデータが文字列と�
  */
 function rand(num) {
 	console.log(`randmax = ${num}`);
-	result = Math.floor(Math.random() * (num - 1));
+	result = Math.floor(Math.random() * (num + 1));
 	return result;
 }
 
