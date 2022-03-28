@@ -27,6 +27,8 @@ function eventKeyPress(e) {
 if (beforeStart === true){ 
   	if(e.key === " "){//スペースでスタート
 	  	console.log("Start!!");
+		setInterval("timerUpdate()",1000);//カウントダウンスタート
+		
 		startTime = new Date().getTime(); //開始時間		
 	  	nextWord();
 		beforeStart = false;
@@ -119,6 +121,10 @@ function wrongType(){
 	document.getElementById('targetFont').innerHTML = testWord.slice(0, testCharCount).fontcolor("blue")
 		+ testWord.slice(testCharCount,testCharCount + 1).fontcolor("red")
 		+ testWord.slice(testCharCount + 1);
+}
+
+function timerUpdate(){
+	document.getElementById("timerUpdate").innerHTML = (startTime + 60000)-new Date();
 }
 
 
