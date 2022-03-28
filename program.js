@@ -12,7 +12,7 @@ let testWordCount = 0;
 
 let testChar = ""; //次に入力する文字
 let testCharCount = 0;
-
+let beforeStart = True;
 
 /**
  * キーが押されたときのイベント
@@ -21,17 +21,17 @@ let testCharCount = 0;
 function eventKeyPress(e) {
 //  document.getElementById("targetFont").innerHTML = e.key;
 //  document.getElementById("targetFont").innerHTML = arrayTestWord[1];
-  if(e.key === "1"){//仮動作
-	  console.log("go to nextword");
-	  nextWord();
-  }
-	
-  if(e.key === testChar){
-    correctType();
-  } else {
-    wrongType();
-  }
-
+if (beforeStart === true){ 
+  	if(e.key === " "){//仮動作
+	  	console.log("Start!");
+	  	nextWord();
+  	}
+  	if(e.key === testChar){
+    		correctType();
+  	} else {
+    		wrongType();
+ 		}
+	}
 }
 
 /**
@@ -86,7 +86,7 @@ function nextWord(){
 	testWordCount++;
 	testCharCount = 0;
 	
-	testWord = arrayTestWord[rand(arrayTestWord.length-1)];
+	testWord = arrayTestWord[rand(arrayTestWord.length - 1)];
 	document.getElementById('targetFont').innerHTML = testWord;
 	testChar = testWord.slice(testCharCount, testCharCount + 1);
 }
