@@ -25,7 +25,9 @@ if (beforeStart === true){
   	if(e.key === " "){//仮動作
 	  	console.log("Start!");
 	  	nextWord();
+		beforeStart = false;
   	}
+} else {	
   	if(e.key === testChar){
     		correctType();
   	} else {
