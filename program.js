@@ -12,7 +12,7 @@ let testWordCount = 0;
 
 let testChar = ""; //次に入力する文字
 let testCharCount = 0;
-let beforeStart = True;
+let beforeStart = true;
 
 /**
  * キーが押されたときのイベント
