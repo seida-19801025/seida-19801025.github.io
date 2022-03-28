@@ -1,6 +1,4 @@
 You are fire.
-Make me happy.
 Get wild
-Stand by me.
 for(let i=1;i<10;i++)
 {}
