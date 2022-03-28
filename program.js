@@ -22,7 +22,7 @@ function eventKeyPress(e) {
 //  document.getElementById("targetFont").innerHTML = e.key;
 //  document.getElementById("targetFont").innerHTML = arrayTestWord[1];
 if (beforeStart === true){ 
-  	if(e.key === " "){//仮動作
+  	if(e.key === " "){//スペースでスタート
 	  	console.log("Start!");
 	  	nextWord();
 		beforeStart = false;
@@ -70,6 +70,7 @@ function getTxt(txtFile) {
  */
 function convertTXTtoArray(str) { // 読み込んだTXTデータが文字列として渡される
 	let result = str.split("\r\n"); // CRLFを区切り文字として行を要素とした配列を生成
+	
 	return result;
 }
 
