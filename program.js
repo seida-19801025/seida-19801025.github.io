@@ -54,7 +54,6 @@ function se(audio) {
 function getTxt(txtFile) {
 	let req = new XMLHttpRequest(); // HTTPでファイルを読み込むためのXMLHttpRrequestオブジェクトを生成
 	let result = [];
-	console.log(txtFile);
 	req.open("get", txtFile, false); // アクセスするファイルを指定
 	req.send(null); // HTTPリクエストの発行
 
@@ -69,8 +68,9 @@ function getTxt(txtFile) {
  * @returns 
  */
 function convertTXTtoArray(str) { // 読み込んだTXTデータが文字列として渡される
+	console.log(`str : ${str}`)
 	let result = str.split("\r\n"); // CRLFを区切り文字として行を要素とした配列を生成
-	console.log(result);
+	console.log(`result : ${result}`);
 	
 	return result;
 }
