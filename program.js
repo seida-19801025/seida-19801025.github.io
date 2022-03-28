@@ -16,7 +16,7 @@ let testWordCount = 0;
 let testChar = ""; //次に入力する文字
 let testCharCount = 0;
 let beforeStart = true;
-
+let startTime
 /**
  * キーが押されたときのイベント
  * @param {*} e 
@@ -27,6 +27,7 @@ function eventKeyPress(e) {
 if (beforeStart === true){ 
   	if(e.key === " "){//スペースでスタート
 	  	console.log("Start!!");
+		startTime = new Date().getTime(); //開始時間		
 	  	nextWord();
 		beforeStart = false;
   	}
