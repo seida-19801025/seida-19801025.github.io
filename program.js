@@ -5,7 +5,8 @@ const seCorrect = new Audio("./mp3/correct.mp3");
 const seWrong = new Audio("./mp3/wrong.mp3");
 const seFinish = new Audio("./mp3/finish.mp3");
 const level = 10;
-const txtFile = "https://seida-19801025.github.io/txt/" + "LV" + level + ".txt"
+//const txtFile = "https://seida-19801025.github.io/txt/" + "LV" + level + ".txt"
+const txtFile = "./txt/LV" + level + ".txt"
 
 
 const arrayTestWord = getTxt(txtFile); //levelに対応したテキストファイルを配列で取得
@@ -17,28 +18,29 @@ let testChar = ""; //次に入力する文字
 let testCharCount = 0;
 let beforeStart = true;
 let startTime
+let timerId;
 /**
  * キーが押されたときのイベント
  * @param {*} e 
  */
 function eventKeyPress(e) {
-//  document.getElementById("targetFont").innerHTML = e.key;
-//  document.getElementById("targetFont").innerHTML = arrayTestWord[1];
-if (beforeStart === true){ 
-  	if(e.key === " "){//スペースでスタート
-	  	console.log("Start!!");
-		setInterval("timerUpdate()",1000);//カウントダウンスタート
-		
-		startTime = new Date().getTime(); //開始時間		
-	  	nextWord();
-		beforeStart = false;
-  	}
-} else {	
-  	if(e.key === testChar){
-    		correctType();
-  	} else {
-    		wrongType();
- 		}
+	//  document.getElementById("targetFont").innerHTML = e.key;
+	//  document.getElementById("targetFont").innerHTML = arrayTestWord[1];
+	if (beforeStart === true) {
+		if (e.key === " ") {//スペースでスタート
+			console.log("Start!!");
+			timerId = setInterval("timerUpdate()", 250);//カウントダウンスタート
+
+			startTime = new Date().getTime(); //開始時間		
+			nextWord();
+			beforeStart = false;
+		}
+	} else {
+		if (e.key === testChar) {
+			correctType();
+		} else {
+			wrongType();
+		}
 	}
 }
 
@@ -74,11 +76,8 @@ function getTxt(txtFile) {
  * @returns 
  */
 function convertTXTtoArray(str) { // 読み込んだTXTデータが文字列として渡される
-	console.log(`str : ${str}`)
 	let result = str.split("\r\n"); // CRLFを区切り文字として行を要素とした配列を生成
 	console.log(`result : ${result}`);
-	// ■■■■■■■■■■■■■■■■■■■■　暫定対応（１つ多く要素ができる）■■■■■■■■■■■■■■■■■■■■
-	result.pop();
 	return result;
 }
 
@@ -89,21 +88,20 @@ function convertTXTtoArray(str) { // 読み込んだTXTデータが文字列と�
  * @returns {number} - 0～numの乱数
  */
 function rand(num) {
-	console.log(`randmax = ${num}`);
+	// console.log(`randmax = ${num}`);
 	result = Math.floor(Math.random() * (num + 1));
 	return result;
 }
 
-function nextWord(){
+function nextWord() {
 	testWordCount++;
 	testCharCount = 0;
-	console.log(`arrayTestWord.length : ${arrayTestWord.length}`);
 	testWord = arrayTestWord[rand(arrayTestWord.length - 1)];
 	document.getElementById('targetFont').innerHTML = testWord;
 	testChar = testWord.slice(testCharCount, testCharCount + 1);
 }
 
-function correctType(){
+function correctType() {
 	se(seCorrect);
 	testCharCount++;
 
@@ -111,23 +109,25 @@ function correctType(){
 	if (testWord.length <= testCharCount) {
 		se(seFinish);
 		nextWord();
-	}else{ //未完なら
+	} else { //未完なら
 		document.getElementById('targetFont').innerHTML = testWord.slice(0, testCharCount).fontcolor("blue") + testWord.slice(testCharCount);
 		testChar = testWord.slice(testCharCount, testCharCount + 1);
-	}	
+	}
 }
 
-function wrongType(){
+function wrongType() {
 	se(seWrong);
 	document.getElementById('targetFont').innerHTML = testWord.slice(0, testCharCount).fontcolor("blue")
-		+ testWord.slice(testCharCount,testCharCount + 1).fontcolor("red")
+		+ testWord.slice(testCharCount, testCharCount + 1).fontcolor("red")
 		+ testWord.slice(testCharCount + 1);
 }
 
-function timerUpdate(){
-	document.getElementById("timerUpdate").innerHTML = (startTime + 60000)-new Date();
+function timerUpdate() {
+	let time = Math.floor(((startTime + 60000) - new Date()) / 1000);
+	document.getElementById("ClockArea").innerHTML = time;
+	if (time === 0){
+		clearInterval(timerId);
+	}
 }
-
-
 
 document.addEventListener("keypress", eventKeyPress);
