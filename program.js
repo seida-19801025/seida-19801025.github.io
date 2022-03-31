@@ -4,46 +4,77 @@
 const seCorrect = new Audio("./mp3/correct.mp3");
 const seWrong = new Audio("./mp3/wrong.mp3");
 const seFinish = new Audio("./mp3/finish.mp3");
-const level = 10;
+//const level = 10;
+const testTime = 6000; //ms
 //const txtFile = "https://seida-19801025.github.io/txt/" + "LV" + level + ".txt"
-const txtFile = "./txt/LV" + level + ".txt"
-
-
-const arrayTestWord = getTxt(txtFile); //levelに対応したテキストファイルを配列で取得
+let txtFile = ""//"./txt/LV" + level + ".txt"
+let arrayTestWord = [];//getTxt(txtFile); //levelに対応したテキストファイルを配列で取得
 
 let testWord = ""; //arrayTestWordから1つのデータを受け取り出題する
 let testWordCount = 0;
 
 let testChar = ""; //次に入力する文字
 let testCharCount = 0;
-let beforeStart = true;
+let isStart = false; //テストが開始されたか？
+let isEnd = false; //テストが終了したか？
 let startTime
 let timerId;
+
 /**
  * キーが押されたときのイベント
  * @param {*} e 
+ * @returns {null} 
  */
 function eventKeyPress(e) {
-	//  document.getElementById("targetFont").innerHTML = e.key;
-	//  document.getElementById("targetFont").innerHTML = arrayTestWord[1];
-	if (beforeStart === true) {
-		if (e.key === " ") {//スペースでスタート
-			console.log("Start!!");
-			timerId = setInterval("timerUpdate()", 250);//カウントダウンスタート
+	//スタートしてなくてスペース押下でスタート
+	if (!isStart && (e.key === " ")) {
+		console.log("Start!!");
+		//window.alert(getLevel());
+		txtFile = "./txt/LV" + getLevel() + ".txt"
+		window.alert(txtFile);
+		arrayTestWord = getTxt(txtFile); //levelに対応したテキストファイルを配列で取得
 
-			startTime = new Date().getTime(); //開始時間		
-			nextWord();
-			beforeStart = false;
-		}
-	} else {
+
+
+
+		timerId = setInterval("timerUpdate()", 250);//カウントダウンスタート
+
+		startTime = new Date().getTime(); //開始時間		
+		nextWord();
+		isStart = true;
+		return null;
+	}
+
+	//テスト終了時、スペース押下でリセット
+	if (isEnd && (e.key === " ")) {
+		console.log("Reset!!");
+		document.getElementById('targetFont').innerHTML = "レベル選択 & <br> Spaceキーでスタート";
+		isStart = false;
+		isEnd = false;
+		return null;
+	}
+
+	//テスト中、正解キーをタイプor不正解キーをタイプの関数を発火
+	if (isStart && !isEnd) {
 		if (e.key === testChar) {
 			correctType();
 		} else {
 			wrongType();
 		}
+		return null;
 	}
 }
 
+function getLevel() {
+	const elements = document.getElementsByName("level");
+	for (const element of elements) {
+		if (element.checked) {
+			return element.value;
+		}
+	}
+	return 99;
+
+}
 /**
  * 効果音を鳴らす
  * ex) se(seCorrect);
@@ -93,14 +124,25 @@ function rand(num) {
 	return result;
 }
 
+/**
+ * 出題関数
+ */
 function nextWord() {
 	testWordCount++;
 	testCharCount = 0;
 	testWord = arrayTestWord[rand(arrayTestWord.length - 1)];
-	document.getElementById('targetFont').innerHTML = testWord;
+	document.getElementById('targetFont').innerHTML = "<span style=\"border-bottom: solid 2px black;\">" + testWord.slice(0, 1) + "</span>"
+		+ testWord.slice(1);
+
 	testChar = testWord.slice(testCharCount, testCharCount + 1);
 }
 
+/**
+ * 正解キーをタイプした時
+ * ・正解効果音を鳴らす
+ * ・文字カウントをインクリメント
+ * 
+*/
 function correctType() {
 	se(seCorrect);
 	testCharCount++;
@@ -110,23 +152,34 @@ function correctType() {
 		se(seFinish);
 		nextWord();
 	} else { //未完なら
-		document.getElementById('targetFont').innerHTML = testWord.slice(0, testCharCount).fontcolor("blue") + testWord.slice(testCharCount);
+		document.getElementById('targetFont').innerHTML = "<span style=\"color: blue;\">" + testWord.slice(0, testCharCount) + "</span>"//.fontcolor("blue") 
+			+ "<span style=\"border-bottom: solid 2px black;\">" + testWord.slice(testCharCount, testCharCount + 1) + "</span>"
+			+ testWord.slice(testCharCount + 1);
+
 		testChar = testWord.slice(testCharCount, testCharCount + 1);
 	}
 }
 
+/**
+ * 不正解キーをタイプ
+ */
 function wrongType() {
 	se(seWrong);
-	document.getElementById('targetFont').innerHTML = testWord.slice(0, testCharCount).fontcolor("blue")
-		+ testWord.slice(testCharCount, testCharCount + 1).fontcolor("red")
+	document.getElementById('targetFont').innerHTML = "<span style=\"color: blue;\">" + testWord.slice(0, testCharCount) + "</span>" //.fontcolor("blue")
+		+ "<span style=\"border-bottom: solid 2px black;\">" + testWord.slice(testCharCount, testCharCount + 1).fontcolor("red") + "</span>"
 		+ testWord.slice(testCharCount + 1);
 }
 
+/**
+ * インターバルタイマからコールバックされる関数
+ */
 function timerUpdate() {
-	let time = Math.floor(((startTime + 60000) - new Date()) / 1000);
+	let time = Math.floor(((startTime + testTime) - new Date()) / 1000);
 	document.getElementById("ClockArea").innerHTML = time;
-	if (time === 0){
+	if (time === 0) {
 		clearInterval(timerId);
+		isEnd = true;
+		document.getElementById('targetFont').innerHTML = "Time up!<br>Spaceキーでリセット"
 	}
 }
 
