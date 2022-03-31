@@ -10,8 +10,8 @@
   タイピング練習でWebアプリ活用も検討したが商用利用や広告、社内ルールなど
   単純に活用するだけでもめんどくさい事が多いので作ってみようかと考えた。
   
-  参考）公開されているタイピングウェブアプリ
-  [e-typing](https://www.e-typing.ne.jp/)
+  参考）公開されているタイピングウェブアプリ<br>
+  [e-typing](https://www.e-typing.ne.jp/)<br>
   [寿司打](http://typingx0.net/sushida/)
 
 ## 素材
