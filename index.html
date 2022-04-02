@@ -8,106 +8,84 @@
 </head>
 
 <body>
-  <header>
-  </header>
 
-  <table>
-    <td class="menu">
-      <p id="ClockArea"></p>
-      <p>レベル選択</p>
+<div class="table">
+  <table >
+    <td class="menu" rowspan="5">
+      残り時間<br>
+      <span id="ClockArea">00<br><br></span>
+
+      <span><br>レベル選択<br><br></span>
 
       <form action="#" method="post">
-        <input type="radio" name="level" value="1"> LV.1<br>
-        <input type="radio" name="level" value="2"> LV.2<br>
-        <input type="radio" name="level" value="3"> LV.3<br>
-        <input type="radio" name="level" value="4"> LV.4<br>
-        <input type="radio" name="level" value="5"> LV.5<br>
-        <input type="radio" name="level" value="6"> LV.6<br>
-        <input type="radio" name="level" value="7"> LV.7<br>
-        <input type="radio" name="level" value="8"> LV.8<br>
-        <input type="radio" name="level" value="9"> LV.9<br>
-        <input type="radio" name="level" value="10"> LV.10<br>
+        <input class="radio" type="radio" name="level" value="1"> LV.1<br>
+        <input class="radio" type="radio" name="level" value="2"> LV.2<br>
+        <input class="radio" type="radio" name="level" value="3"> LV.3<br>
+        <input class="radio" type="radio" name="level" value="4"> LV.4<br>
+        <input class="radio" type="radio" name="level" value="5"> LV.5<br>
+        <input class="radio" type="radio" name="level" value="6"> LV.6<br>
+        <input class="radio" type="radio" name="level" value="7"> LV.7<br>
+        <input class="radio" type="radio" name="level" value="8"> LV.8<br>
+        <input class="radio" type="radio" name="level" value="9"> LV.9<br>
+        <input class="radio" type="radio" name="level" value="10"> LV.10<br>
       </form>
-
-      </div>
-
     </td>
 
-    <td class="mainScreen">
-      <table>
-        <tr>
-          <div class="testString">
-            <p id="targetFont">レベル選択 & <br> Spaceキーでスタート</p>
-          </div>
-        </tr>
-
-        <tr>
-          <div class="row1">
-            <td id="keyQ" class="col1 key pinky">1</td>
-            <td id="keyW" class="col2 key ring">2</td>
-            <td id="keyE" class="col3 key middle">3</td>
-            <td id="keyR" class="col4 key index">4</td>
-            <td id="keyT" class="col5 key cent">5</td>
-            <td id="keyY" class="col6 key cent">6</td>
-            <td id="keyU" class="col7 key index">7</td>
-            <td id="keyI" class="col8 key middle">8</td>
-            <td id="keyO" class="col9 key ring">9</td>
-            <td id="keyP" class="col10 key pinky">10</td>
-          </div>
-        </tr>
-
-        <tr>
-          <div class="row2">
-            <td id="KeyA" class="col1 key pinky botton">1</td>
-            <td id="KeyS" class="col2 key ring">2</td>
-            <td id="KeyD" class="col3 key middle">3</td>
-            <td id="KeyF" class="col4 key home index">4</td>
-            <td id="KeyG" class="col5 key cent">5</td>
-            <td id="KeyH" class="col6 key cent">6</td>
-            <td id="KeyJ" class="col7 key home index">7</td>
-            <td id="KeyK" class="col8 key middle">8</td>
-            <td id="KeyL" class="col9 key ring">9</td>
-            <td id="Key;" class="col10 key pinky">10</td>
-          </div>
-        </tr>
-
-        <tr>
-          <div class="row3">
-            <td id="KeyZ" class="col1 key pinky">1</td>
-            <td id="KeyX" class="col2 key ring">2</td>
-            <td id="KeyC" class="col3 key middle">3</td>
-            <td id="KeyV" class="col4 key index">4</td>
-            <td id="KeyB" class="col5 key cent">5</td>
-            <td id="KeyN" class="col6 key cent">6</td>
-            <td id="KeyM" class="col7 key index">7</td>
-            <td id="Key," class="col8 key middle">8</td>
-            <td id="KeyDot" class="col9 key ring">9</td>
-            <td id="KeySlash" class="col10 key pinky">10</td>
-          </div>
-        </tr>
-        <tr>
-          <div class="row4">
-
-            <td colspan="2"></td>
-            <td colspan="6" class="space"></td>
-            <td colspan="2"></td>
-
-          </div>
-        </tr>
-
-
-      </table>
-
+    <td id="targetFont" class="testString" colspan="10">
+      レベル選択 & <br> Spaceキーでスタート
     </td>
+
+    <tr>
+      <td id="keyQ" class="col1 key pinky">q</td>
+      <td id="keyW" class="col2 key ring">w</td>
+      <td id="keyE" class="col3 key middle">e</td>
+      <td id="keyR" class="col4 key index">r</td>
+      <td id="keyT" class="col5 key cent">t</td>
+      <td id="keyY" class="col6 key cent">y</td>
+      <td id="keyU" class="col7 key index">u</td>
+      <td id="keyI" class="col8 key middle">i</td>
+      <td id="keyO" class="col9 key ring">o</td>
+      <td id="keyP" class="col10 key pinky">p</td>
+    </tr>
+
+    <tr>
+      <td id="keyA" class="col1 key pinky botton">a</td>
+      <td id="keyS" class="col2 key ring">s</td>
+      <td id="keyD" class="col3 key middle">d</td>
+      <td id="keyF" class="col4 key home index">f</td>
+      <td id="keyG" class="col5 key cent">g</td>
+      <td id="keyH" class="col6 key cent">h</td>
+      <td id="keyJ" class="col7 key home index">j</td>
+      <td id="keyK" class="col8 key middle">k</td>
+      <td id="keyL" class="col9 key ring">l</td>
+      <td id="key;" class="col10 key pinky">;</td>
+    </tr>
+
+    <tr>
+      <td id="keyZ" class="col1 key pinky">z</td>
+      <td id="keyX" class="col2 key ring">x</td>
+      <td id="keyC" class="col3 key middle">c</td>
+      <td id="keyV" class="col4 key index">v</td>
+      <td id="keyB" class="col5 key cent">b</td>
+      <td id="keyN" class="col6 key cent">n</td>
+      <td id="keyM" class="col7 key index">m</td>
+      <td id="key," class="col8 key middle">,</td>
+      <td id="key." class="col9 key ring">.</td>
+      <td id="key/" class="col10 key pinky">/</td>
+    </tr>
+    <tr>
+      <td colspan="2"> </td>
+      <td id="key " class="key" colspan="6">   </td>
+      <td colspan="2"> </td>
+    </tr>
+
+
   </table>
 
-  </div>
 
+</div>
 
-  <script type="text/javascript" src="program.js"></script>
-
-  <footer>
-  </footer>
+<script type="text/javascript" src="program.js"></script>
 </body>
 
 </html>
