@@ -6,71 +6,65 @@ class =>  .
 
 テーブルについて
 https://code-kitchen.dev/html/table/
-
-
 */
 
-#targetFont {
+.menu {
+  width: 150px;
+  font-size: 20px;
+}
+
+.radio{
+	cursor:pointer;
+}
+
+#ClockArea {
   font-size: 40px;
 }
 
-#ClockArea{
-  font-size: 40px;
-  height :10px;
-  text-align:center;
-  vertical-align:top; /*うまくいってない*/
-}
-.menu{
-  width: 100px;
-}
-.mainScreen{
-  border: solid 1px #333; /* 線の種類 太さ 色 */
-  height:600px;
-  width:800px;
-}
+.testString {
 
-.testString{
-  height:200px;
-}
-
-.key{
-  border: solid 2px #333; /* 線の種類 太さ 色 */
-  height:100px;
-  width:70px;
+  height: 300px;
+  padding: 0.5em 1em;
+  margin: 2em 0;
+  font-weight: bold;
+  color: #6091d3;
+  background: #FFF;
+  border: solid 3px #6091d3;
+  border-radius: 10px;
+  text-shadow: #fff 2px 0, #fff -2px 0, #fff 0 -2px, #fff 0 2px, #fff 2px 2px, #fff -2px 2px, #fff 2px -2px, #fff -2px -2px, #fff 1px 2px, #fff -1px 2px, #fff 1px -2px, #fff -1px -2px, #fff 2px 1px, #fff -2px 1px, #fff 2px -1px, #fff -2px -1px, rgba(0, 0, 0, .5) 3px 3px 3px;
 
   font-size: 40px;
-  text-align:center;
 }
 
-.home{
-  border: solid 5px #333; /* 線の種類 太さ 色 */
-  height:100px;
-  width:70px;
-  
-  font-size: 40px;
-  text-align:center;
+.key {
+  border: solid 2px #333;
+  border-radius: 7px;
+  height: 70px;
+  width: 90px;
+  font-size: 30px;
+  text-align: center;
 }
 
-.pinky{
-  background-color: pink;
+.home {
+  border: solid 5px #333;
 }
 
-.ring{
-  background-color:khaki;
+.pinky {
+  background-color: #fdd9df;
 }
 
-.middle{
-  background-color:chocolate;
+.ring {
+  background-color: #fff8bb;
 }
 
-.index{
-  background-color: cadetblue;
-}
-.cent{
-  background-color: cadetblue;
+.middle {
+  background-color: #ffa361;
 }
 
-.space{
-  border: solid 2px #333; /* 線の種類 太さ 色 */
-  height:60px;
+.index {
+  background-color: #cbfdff;
+}
+
+.cent {
+  background-color: #cbfdff;
 }
