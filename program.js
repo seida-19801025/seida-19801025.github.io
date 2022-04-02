@@ -1,15 +1,25 @@
-// const seCorrect = new Audio("https://seida-19801025.github.io/mp3/correct.mp3");
-// const seWrong = new Audio("https://seida-19801025.github.io/mp3/wrong.mp3");
-// const seFinish = new Audio("https://seida-19801025.github.io/mp3/finish.mp3");
+// 効果音用AudioElement
 const seCorrect = new Audio("./mp3/correct.mp3");
 const seWrong = new Audio("./mp3/wrong.mp3");
 const seFinish = new Audio("./mp3/finish.mp3");
-//const level = 10;
-const testTime = 6000; //ms
-//const txtFile = "https://seida-19801025.github.io/txt/" + "LV" + level + ".txt"
-let txtFile = ""//"./txt/LV" + level + ".txt"
-let arrayTestWord = [];//getTxt(txtFile); //levelに対応したテキストファイルを配列で取得
+// ピアノAudioElement
+const piano1 = new Audio("./mp3/piano/1C.mp3");
+const piano2 = new Audio("./mp3/piano/2D.mp3");
+const piano3 = new Audio("./mp3/piano/3E.mp3");
+const piano4 = new Audio("./mp3/piano/4F.mp3");
+const piano5 = new Audio("./mp3/piano/5G.mp3");
+const piano6 = new Audio("./mp3/piano/6A.mp3");
+const piano7 = new Audio("./mp3/piano/7B.mp3");
+const piano8 = new Audio("./mp3/piano/8C.mp3");
+const piano = ["", piano1, piano2, piano3, piano4, piano5, piano6, piano7, piano8]
+//
 
+let music = [1, 0, 1, 0, 5, 0, 5, 0, 6, 0, 6, 0, 5, 0, 0, 4, 4, 0, 3, 0, 3, 0, 2, 0, 2, 0, 1, 0, 0, 5, 0, 5, 0, 4, 0, 4, 0, 3, 0, 3, 0, 2, 0, 0, 5, 0, 5, 0, 4, 0, 4, 0, 3, 0, 3, 0, 2, 0, 0, 1, 0, 1, 0, 5, 0, 5, 0, 6, 0, 6, 0, 5, 0, 0, 4, 4, 0, 3, 0, 3, 0, 2, 0, 2, 0, 1, 0];
+const testTime = 10000; //ms
+
+let txtFile = "";//"./txt/LV" + level + ".txt"
+
+let arrayTestWord = [];//getTxt(txtFile); //levelに対応したテキストファイルを配列で取得
 let testWord = ""; //arrayTestWordから1つのデータを受け取り出題する
 let testWordCount = 0;
 
@@ -17,25 +27,36 @@ let testChar = ""; //次に入力する文字
 let testCharCount = 0;
 let isStart = false; //テストが開始されたか？
 let isEnd = false; //テストが終了したか？
-let startTime
-let timerId;
+let totalValidType = 0; //有効タイプ数をカウント
+let startTime;
+let timerId; //タイマー
 
+let decoratedKey = []; //装飾中のキーオブジェクト 0:objKey 1:objKey.style
+let isCapsLock = false; //CapsLock ON?
+let isShift = false; //shift押下？
+let hoge = 0;
+const arrayKeyId1 = ["keyQ", "keyW", "keyE", "keyR", "keyT", "keyY", "keyU", "keyI", "keyO", "keyP", "keyA", "keyS", "keyD", "keyF", "keyG", "keyH", "keyJ", "keyK", "keyL", "keyZ", "keyX", "keyC", "keyV", "keyB", "keyN", "keyM"];
+const arrayKeyId2 = ["key;", "key,", "key.", "key/"];
 /**
  * キーが押されたときのイベント
  * @param {*} e 
  * @returns {null} 
  */
 function eventKeyPress(e) {
+
 	//スタートしてなくてスペース押下でスタート
 	if (!isStart && (e.key === " ")) {
+
+		if (getLevel() === 99 && hoge <= 1) {
+			window.alert("レベルを選択してください。");
+			hoge += 1;
+			return null;
+		}
+
 		console.log("Start!!");
-		//window.alert(getLevel());
 		txtFile = "./txt/LV" + getLevel() + ".txt"
-		window.alert(txtFile);
+
 		arrayTestWord = getTxt(txtFile); //levelに対応したテキストファイルを配列で取得
-
-
-
 
 		timerId = setInterval("timerUpdate()", 250);//カウントダウンスタート
 
@@ -43,6 +64,7 @@ function eventKeyPress(e) {
 		nextWord();
 		isStart = true;
 		return null;
+
 	}
 
 	//テスト終了時、スペース押下でリセット
@@ -51,6 +73,7 @@ function eventKeyPress(e) {
 		document.getElementById('targetFont').innerHTML = "レベル選択 & <br> Spaceキーでスタート";
 		isStart = false;
 		isEnd = false;
+		hoge = 10; // きらきらタイムアップ後再実行できないように対応？？
 		return null;
 	}
 
@@ -73,8 +96,8 @@ function getLevel() {
 		}
 	}
 	return 99;
-
 }
+
 /**
  * 効果音を鳴らす
  * ex) se(seCorrect);
@@ -131,10 +154,11 @@ function nextWord() {
 	testWordCount++;
 	testCharCount = 0;
 	testWord = arrayTestWord[rand(arrayTestWord.length - 1)];
+
 	document.getElementById('targetFont').innerHTML = "<span style=\"border-bottom: solid 2px black;\">" + testWord.slice(0, 1) + "</span>"
 		+ testWord.slice(1);
-
 	testChar = testWord.slice(testCharCount, testCharCount + 1);
+	decorateCorrectKey(testChar);
 }
 
 /**
@@ -144,11 +168,28 @@ function nextWord() {
  * 
 */
 function correctType() {
-	se(seCorrect);
+	totalValidType++;
+	if (hoge >= 1 && getLevel() === 99) {
+		//■■■きらきら■■■
+		kirakira();
+	} else {
+		se(seCorrect);
+	}
 	testCharCount++;
 
 	//単語完了時
 	if (testWord.length <= testCharCount) {
+		// きらきらモードは1回で終了
+		if (hoge >= 1 && getLevel() === 99) {//■■■きらきら■■■
+			hoge = 10;
+			clearInterval(timerId);
+			isEnd = true;
+			document.getElementById('targetFont').innerHTML = "ナイスきらきら☆彡"
+			// hoge = 2;
+			isStart = false;
+			isEnd = false;
+			return null;
+		}
 		se(seFinish);
 		nextWord();
 	} else { //未完なら
@@ -157,6 +198,7 @@ function correctType() {
 			+ testWord.slice(testCharCount + 1);
 
 		testChar = testWord.slice(testCharCount, testCharCount + 1);
+		decorateCorrectKey(testChar);
 	}
 }
 
@@ -170,17 +212,78 @@ function wrongType() {
 		+ testWord.slice(testCharCount + 1);
 }
 
+function decorateCorrectKey(key) {
+
+	if (decoratedKey[0] !== undefined) {
+		decoratedKey[0].style = decoratedKey[1];
+	}
+
+	const upperKey = key.toUpperCase();
+	console.log(upperKey);
+	const obj = document.getElementById("key" + upperKey);
+	//装飾するキーとそのスタイルを記録しておく
+	decoratedKey[0] = obj;
+	decoratedKey[1] = obj.style;
+
+	obj.style.outline = "solid blue";//"solid 5px blue"
+	// console.log(typeof obj.style);
+	// console.log(typeof obj.style.outline);
+}
 /**
  * インターバルタイマからコールバックされる関数
  */
 function timerUpdate() {
 	let time = Math.floor(((startTime + testTime) - new Date()) / 1000);
 	document.getElementById("ClockArea").innerHTML = time;
-	if (time === 0) {
+	if (time <= 0) {
 		clearInterval(timerId);
 		isEnd = true;
-		document.getElementById('targetFont').innerHTML = "Time up!<br>Spaceキーでリセット"
+		window.alert(`有効タイピング速度[type/min] : ${(totalValidType * 60000) / testTime}`);
+		document.getElementById("targetFont").innerHTML = "Time up!<br>Spaceキーでリセット"
+
 	}
 }
 
+function changeKeyCase(e) {
+	if (e.getModifierState("CapsLock") === true) {
+		isCapsLock = true;
+	} else {
+		isCapsLock = false;
+	}
+	isShift = e.shiftKey;
+
+	if (isCapsLock ^ isShift) {
+		arrayKeyId1.map(function (id) {
+			document.getElementById(id).textContent = id.slice(-1);
+		})
+	} else {
+		arrayKeyId1.map(function (id) {
+			document.getElementById(id).textContent = (id.slice(-1)).toLowerCase();
+		})
+	}
+
+	if (isShift) {
+		let i = 0;
+		let arraySpKeyContent = ["+", "<", ">", "?"];
+		for (const id of arrayKeyId2) {
+			document.getElementById(id).textContent = arraySpKeyContent[i];
+			i++;
+		}
+	} else {
+		arrayKeyId2.map(function (id) {
+			document.getElementById(id).textContent = id.slice(-1);
+		}
+		)
+	}
+}
+
+function kirakira() {
+	let num = music.shift();
+	console.log("piano" + num);
+	if (num !== 0) {
+		se(piano[num]);
+	}
+}
 document.addEventListener("keypress", eventKeyPress);
+document.addEventListener("keyup", changeKeyCase);
+document.addEventListener("keydown", changeKeyCase);
