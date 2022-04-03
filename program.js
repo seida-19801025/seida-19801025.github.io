@@ -1,3 +1,7 @@
+/*memo
+ChromeのBlinkは以下の4フェーズからなる処理によってWebページを表示する。
+Loading > Scripting > Rendering > Painting
+*/
 // 効果音用AudioElement
 const seCorrect = new Audio("./mp3/correct.mp3");
 const seWrong = new Audio("./mp3/wrong.mp3");
@@ -48,7 +52,6 @@ const arrayKeyId2 = ["key;", "key,", "key.", "key/"];
 function eventKeyPress(e) {
 	//スタートしてなくてスペース押下でスタート
 	if (!isStart && (e.key === " ")) {
-
 		//レベル未選択時
 		if (getLevel() === 99) {
 			if (kirakiraCount <= 4) {
@@ -241,6 +244,7 @@ function decorateCorrectKey(key) {
 	// console.log(typeof obj.style);
 	// console.log(typeof obj.style.outline);
 }
+
 /**
  * インターバルタイマからコールバックされる
  */
@@ -250,14 +254,13 @@ function timerUpdate() {
 	if (time <= 0) {
 		clearInterval(timerId);
 		isEnd = true;
-		window.alert(`有効タイピング速度[type/min] : ${(totalValidType * 60000) / testTime}`);
 		document.getElementById("targetFont").innerHTML = "Time up!<br>Spaceキーでリセット"
 		//■■■きらきらリセット■■■
 		kirakiraCount = 0;
 		music = [1, 0, 1, 0, 5, 0, 5, 0, 6, 0, 6, 0, 5, 0, 0, 4, 4, 0, 3, 0, 3, 0, 2, 0, 2, 0, 1, 0, 0, 5, 0, 5, 0, 4, 0, 4, 0, 3, 0, 3, 0, 2, 0, 0, 5, 0, 5, 0, 4, 0, 4, 0, 3, 0, 3, 0, 2, 0, 0, 1, 0, 1, 0, 5, 0, 5, 0, 6, 0, 6, 0, 5, 0, 0, 4, 4, 0, 3, 0, 3, 0, 2, 0, 2, 0, 1, 0];
 		isKirakira = false;
-
 		totalValidType = 0;
+		window.alert(`有効タイピング速度[type/min] : ${(totalValidType * 60000) / testTime}`);
 	}
 }
 /**
