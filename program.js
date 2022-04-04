@@ -259,10 +259,8 @@ function timerUpdate() {
 		kirakiraCount = 0;
 		music = [1, 0, 1, 0, 5, 0, 5, 0, 6, 0, 6, 0, 5, 0, 0, 4, 4, 0, 3, 0, 3, 0, 2, 0, 2, 0, 1, 0, 0, 5, 0, 5, 0, 4, 0, 4, 0, 3, 0, 3, 0, 2, 0, 0, 5, 0, 5, 0, 4, 0, 4, 0, 3, 0, 3, 0, 2, 0, 0, 1, 0, 1, 0, 5, 0, 5, 0, 6, 0, 6, 0, 5, 0, 0, 4, 4, 0, 3, 0, 3, 0, 2, 0, 2, 0, 1, 0];
 		isKirakira = false;
-	}
-	//残り時間１で停止するバグ対策
-	if (time <= 0){
-		window.alert(`有効タイピング速度[type/min] : ${(totalValidType * 60000) / testTime}`);
+		//残り時間１で停止するバグ対策
+		setTimeout(function(){window.alert(`有効タイピング速度[type/min] : ${(totalValidType * 60000) / testTime}`)}, 1);
 		totalValidType = 0;
 	}
 }
